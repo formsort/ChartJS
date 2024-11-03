@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "chart.js/auto": "./chartjs/auto.js"
+  }
+}
