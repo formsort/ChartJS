@@ -1,4 +1,11 @@
 import Chart from "chart.js/auto";
+import {
+	getAnswerValue,
+	setAnswerValue,
+	setAutoHeight
+} from "@formsort/custom-question-api";
+
+const allAnswers = getAnswerValue();
 
 (async function () {
 	const data = [
