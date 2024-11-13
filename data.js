@@ -9,13 +9,15 @@ import {
 const allAnswers = getAnswerValue();
 
 (async function () {
+	const ctx = document.getElementById("data");
+
 	const data = [
 		{ month: "Jan", weight: 250 },
 		{ month: "Feb", weight: 250 },
 		{ month: "Jun", weight: 200 }
 	];
 
-	new Chart(document.getElementById("data"), {
+	new Chart(ctx, {
 		type: "line",
 		options: {
 			pointStyle: false,
@@ -34,8 +36,6 @@ const allAnswers = getAnswerValue();
 					}
 				},
 				y: {
-					type: "linear",
-					// beginAtZero: true,
 					grid: {
 						display: false
 					},
@@ -43,18 +43,16 @@ const allAnswers = getAnswerValue();
 						count: 2
 					}
 				}
+			},
+			plugins: {
+				legend: {
+					display: false
+				}
 			}
 		},
-		plugins: {},
 		data: {
 			datasets: [
 				{
-					label: "Weight loss prediction",
-					plugins: {
-						font: {
-							size: 5
-						}
-					},
 					data: data.map((row) => row.weight)
 				}
 			]
