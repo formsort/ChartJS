@@ -5,43 +5,48 @@ import {
 	setAutoHeight
 } from "@formsort/custom-question-api";
 
+// Need a function that can transform: current weight, weight loss time horizon into a data object
 const allAnswers = getAnswerValue();
 
 (async function () {
 	const data = [
 		{ month: "Jan", weight: 250 },
 		{ month: "Feb", weight: 250 },
-		{ month: "Mar", weight: 200 },
-		{ month: "Apr", weight: 150 },
-		{ month: "May", weight: 50 },
-		{ month: "Jun", weight: 0 }
+		{ month: "Jun", weight: 200 }
 	];
 
 	new Chart(document.getElementById("data"), {
 		type: "line",
 		options: {
 			pointStyle: false,
-			pointRadius: 5,
 			fill: true,
-			backgroundColor: "rgb(254,250,224,0.8)",
-			borderColor: "rgb(188,108,37,0.8 )",
+			backgroundColor: "rgb(229,229,229,0.8)",
+			borderColor: "#00000",
 			borderWidth: 3,
-			legend: { display: false },
 			scales: {
 				x: {
+					type: "category",
+					max: 2,
+					labels: ["January", "February", "March", "April", "May"],
+					// min: "February",
 					grid: {
 						display: false
 					}
 				},
 				y: {
+					type: "linear",
+					// beginAtZero: true,
 					grid: {
 						display: false
+					},
+					ticks: {
+						count: 2
 					}
 				}
 			}
 		},
+		plugins: {},
 		data: {
-			labels: data.map((row) => row.month),
 			datasets: [
 				{
 					label: "Weight loss prediction",
