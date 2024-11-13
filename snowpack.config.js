@@ -1,10 +1,7 @@
-// const fs = require("fs");
-
-// const cert = fs.readFileSync("./localhost.cert");
-// const key = fs.readFileSync("./localhost.key");
-
-// module.exports = {
-// 	devOptions: {
-// 		secure: { cert, key }
-// 	}
-// };
+export default {
+  optimize: {
+    bundle: true,
+    minify: true,
+    target: "es2015"
+  }
+};
