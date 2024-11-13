@@ -4,6 +4,29 @@ import {
 	setAutoHeight
 } from "@formsort/custom-question-api";
 
+async function loadClientConfig() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const answerLabel = urlParams.get('answerLabel');
+
+  const answers = await getAllAnswerValues();
+
+  return answers[answerLabel] || {};
+}
+
+/**
+ * we expect people to pass an answer that includes labels field and data field
+ * {
+ *  labels: ['January', 'February', 'March', 'April', 'May'],
+ *  data: {
+			datasets: [
+				{
+					data: [300, 300, 200]
+				}
+			]
+		}
+ * }
+ */
+
 // Need a function that can transform: current weight, goal weight, and weight loss time horizon into a fields for data.datasets.data
 async function getAllAnswers() {
 	const answers = await getAllAnswerValues();
@@ -51,7 +74,7 @@ const options = {
 	}
 };
 
-const data = {
+const defaultData = {
 	datasets: [
 		{
 			data: [300, 300, 200]
@@ -60,6 +83,12 @@ const data = {
 };
 
 (async function () {
+	const { data = defaultData, labels } = await loadClientConfig();
+
+	if (labels) {
+		options.scales.x.labels = labels;
+	}
+
 	const ctx = document.getElementById("data");
 
 	new Chart(ctx, {
