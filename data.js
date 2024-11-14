@@ -5,12 +5,12 @@ import {
 } from "@formsort/custom-question-api";
 
 async function loadClientConfig() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const answerLabel = urlParams.get('answerLabel');
+	const urlParams = new URLSearchParams(window.location.search);
+	const answerLabel = urlParams.get("answerLabel");
 
-  const answers = await getAllAnswerValues();
+	const answers = await getAllAnswerValues();
 
-  return answers[answerLabel] || {};
+	return answers[answerLabel] || {};
 }
 
 /**
@@ -27,15 +27,6 @@ async function loadClientConfig() {
  * }
  */
 
-// Need a function that can transform: current weight, goal weight, and weight loss time horizon into a fields for data.datasets.data
-async function getAllAnswers() {
-	const answers = await getAllAnswerValues();
-	const values = Object.values(answers);
-
-	console.log(`values: ${values}`);
-}
-getAllAnswers();
-
 const options = {
 	pointStyle: false,
 	fill: true,
@@ -44,17 +35,11 @@ const options = {
 	borderWidth: 3,
 	scales: {
 		x: {
-			// type: "time",
-			max: 2,
-			labels: ["January", "February", "March", "April", "May"],
-			// min: "February",
 			grid: {
 				display: false
 			},
 			ticks: {
-				align: "start",
-				crossAlign: "far",
-				count: 2
+				display: false
 			}
 		},
 		y: {
@@ -74,26 +59,40 @@ const options = {
 	}
 };
 
-const defaultData = {
-	datasets: [
-		{
-			data: [300, 300, 200]
-		}
-	]
-};
+// const defaultData = {
+// 	datasets: [
+// 		{
+// 			data: [1, 10]
+// 		}
+// 	]
+// };
 
 (async function () {
-	const { data = defaultData, labels } = await loadClientConfig();
+	const result = await loadClientConfig();
 
-	if (labels) {
-		options.scales.x.labels = labels;
-	}
+	const res = await getAllAnswerValues();
+	const clientConfig = await loadClientConfig();
+
+	console.log(res);
+	console.log(clientConfig);
+
+	// chart_data will have labels hard-coded in
+	// if (labels) {
+	// 	options.scales.x.labels = labels;
+	// }
 
 	const ctx = document.getElementById("data");
 
 	new Chart(ctx, {
 		type: "line",
-		data: data,
-		options: options
+		options: options,
+		data: {
+			labels: result.map((item) => item.labels),
+			datasets: [
+				{
+					data: result.map((item) => item.data)
+				}
+			]
+		}
 	});
 })();
