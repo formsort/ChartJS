@@ -1,4 +1,10 @@
-import Chart from "chart.js/auto";
+import {
+	Chart,
+	LineElement,
+	PointElement,
+	CategoryScale,
+	LinearScale
+} from "chart.js/auto";
 import {
 	getAllAnswerValues,
 	setAutoHeight
@@ -18,14 +24,16 @@ async function loadClientConfig() {
  * {
  *  labels: ['January', 'February', 'March', 'April', 'May'],
  *  data: {
-			datasets: [
-				{
-					data: [300, 300, 200]
-				}
-			]
+datasets: [
+  {
+    data: [300, 300, 200]
+    }
+    ]
 		}
- * }
- */
+    * }
+    */
+
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const options = {
 	pointStyle: false,
@@ -48,7 +56,10 @@ const options = {
 			},
 			ticks: {
 				count: 2,
-				crossAlign: "near"
+				crossAlign: "near",
+				font: {
+					size: 16
+				}
 			}
 		}
 	},
@@ -59,6 +70,7 @@ const options = {
 	}
 };
 
+// Default values are handled in the chart_data variable
 // const defaultData = {
 // 	datasets: [
 // 		{
