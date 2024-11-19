@@ -5,6 +5,7 @@ import {
 	CategoryScale,
 	LinearScale
 } from "chart.js/auto";
+
 import {
 	getAllAnswerValues,
 	setAutoHeight
@@ -18,20 +19,6 @@ async function loadClientConfig() {
 
 	return answers[answerLabel] || {};
 }
-
-/**
- * we expect people to pass an answer that includes labels field and data field
- * {
- *  labels: ['January', 'February', 'March', 'April', 'May'],
- *  data: {
-datasets: [
-  {
-    data: [300, 300, 200]
-    }
-    ]
-		}
-    * }
-    */
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
@@ -55,7 +42,7 @@ const options = {
 				display: false
 			},
 			ticks: {
-				count: 2,
+				count: 5,
 				crossAlign: "near",
 				font: {
 					size: 16
@@ -64,6 +51,9 @@ const options = {
 		}
 	},
 	plugins: {
+		tooltip: {
+			enabled: false
+		},
 		legend: {
 			display: false
 		}
