@@ -60,15 +60,6 @@ const options = {
 	}
 };
 
-// Default values are handled in the chart_data variable
-// const defaultData = {
-// 	datasets: [
-// 		{
-// 			data: [1, 10]
-// 		}
-// 	]
-// };
-
 (async function () {
 	const result = await loadClientConfig();
 
@@ -77,11 +68,6 @@ const options = {
 
 	console.log(res);
 	console.log(clientConfig);
-
-	// chart_data will have labels hard-coded in
-	// if (labels) {
-	// 	options.scales.x.labels = labels;
-	// }
 
 	const ctx = document.getElementById("data");
 
