@@ -4,12 +4,9 @@ import {
 	PointElement,
 	CategoryScale,
 	LinearScale
-} from "chart.js/auto";
+} from "chart.js";
 
-import {
-	getAllAnswerValues,
-	setAutoHeight
-} from "@formsort/custom-question-api";
+import { getAllAnswerValues } from "@formsort/custom-question-api";
 
 async function loadClientConfig() {
 	const urlParams = new URLSearchParams(window.location.search);

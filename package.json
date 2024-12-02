@@ -3,13 +3,17 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"start": "snowpack dev",
+		"start": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"vite": "^6.0.2"
+		"tslib": "^2.8.1",
+		"vite": "^6.0.2",
+		"vite-bundle-visualizer": "^1.2.1"
 	},
 	"dependencies": {
 		"@formsort/custom-question-api": "^0.3.3",
