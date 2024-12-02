@@ -62,12 +62,6 @@ const options = {
 (async function () {
 	const result = await loadClientConfig();
 
-	const res = await getAllAnswerValues();
-	const clientConfig = await loadClientConfig();
-
-	console.log(res);
-	console.log(clientConfig);
-
 	const ctx = document.getElementById("data");
 
 	new Chart(ctx, {
