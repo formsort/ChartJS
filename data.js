@@ -1,10 +1,14 @@
 import {
 	Chart,
+	LineController,
 	LineElement,
 	PointElement,
 	CategoryScale,
-	LinearScale
+	LinearScale,
+	Filler,
 } from "chart.js";
+
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Filler);
 
 import { getAllAnswerValues } from "@formsort/custom-question-api";
 
@@ -16,8 +20,6 @@ async function loadClientConfig() {
 
 	return answers[answerLabel] || {};
 }
-
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const options = {
 	pointStyle: false,
