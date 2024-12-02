@@ -60,20 +60,28 @@ const options = {
 };
 
 (async function () {
-	const result = await loadClientConfig();
+	try {
+		const result = await loadClientConfig();
 
-	const ctx = document.getElementById("data");
+		const ctx = document.getElementById("data");
 
-	new Chart(ctx, {
-		type: "line",
-		options: options,
-		data: {
-			labels: result.map((item) => item.labels),
-			datasets: [
-				{
-					data: result.map((item) => item.data)
-				}
-			]
-		}
-	});
+		new Chart(ctx, {
+			type: "line",
+			options: options,
+			data: {
+				labels: result.map((item) => item.labels),
+				datasets: [
+					{
+						data: result.map((item) => item.data)
+					}
+				]
+			}
+		});
+	} catch {
+		const body = document.querySelector("body");
+		const message = document.createElement("p");
+		message.classList.add("error");
+		message.innerHTML = "Please run this page in a formsort flow.";
+		body.prepend(message);
+	}
 })();
